@@ -1,5 +1,5 @@
 public class Meja {
-    private int nomorMeja;
+    private static int nomorMeja;
     private Pelanggan pelanggan;
     private Menu[] menu;
 
@@ -8,7 +8,7 @@ public class Meja {
         this.menu = new Menu[10]; // maksimum 10 pesanan per meja
     }
 
-    public int getNomorMeja() {
+    public static int getNomorMeja() {
         return nomorMeja;
     }
 
@@ -45,5 +45,6 @@ public class Meja {
     // untuk mengecek apakah meja kosong
     public boolean isKosong() {
         // EDIT DISINI
+        return false;
     }
 }

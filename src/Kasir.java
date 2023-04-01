@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class Kasir {
+    private static Scanner input = new Scanner(System.in);
     private Meja[] daftarMeja;
     private Menu[] daftarMenu;
 
@@ -21,25 +22,42 @@ public class Kasir {
     // digunakan untuk menampilkan daftar meja beserta keterangan ketersediaannya
     // gunakan method isKosong pada class Kasir agar lebih mudah
     public void tampilkanDaftarMeja() {
-        // EDIT DISINI
+        System.out.println("Daftar Meja = ");
+        for (int i = 0; i < daftarMeja.length; i++) {
+            if (daftarMeja[i].isKosong()) {
+                System.out.println("Meja " + (i + 1) + " terisi");
+            } else {
+                System.out.println("Meja " + (i + 1) + " kosong");
+            }
+        }
+
     }
 
     // untuk menambahkan pelanggan pada meja tertentu
     // jika meja kosong tambahkan pelanggan pada meja tersebut
     // jika tidak buatlah keterangan bahwa meja sudah ada pelanggan
+
     public void tambahPelanggan(int nomorMeja, Pelanggan pelanggan) {
         // EDIT DISINI
+        if (!(daftarMeja[nomorMeja - 1].isKosong()))
+            System.out.println("Meja sudah ada pelanggan");
+        else {
+            daftarMeja[nomorMeja - 1].setPelanggan(pelanggan);
+        }
     }
 
     // menambah pesanan menu pada nomor meja
     // jika menu tidak ada dalam daftar maka tampilkan "Menu is null"
     public void tambahPesanan(int nomorMeja, Menu menu) {
         // EDIT DISINI
+        daftarMeja[nomorMeja - 1].setMenu(menu);
+
     }
 
     // Menghapus pelanggan
     public void hapusPelanggan(int nomorMeja) {
         // EDIT DISINI
+
     }
 
     public int hitungHargaPesanan(int nomorMeja) {
@@ -105,9 +123,17 @@ public class Kasir {
             scanner.nextLine();
             switch (pilihan) {
                 case 1:
+                    tampilkanDaftarMeja();
                     // menampilkan daftar meja dengan method yang sudah ada
                     // EDIT DISINI
                 case 2:
+                    System.out.print("Nomor meja = ");
+                    int nomorMeja = input.nextInt();
+                    System.out.print("Nama = ");
+                    input.nextLine();
+                    String nama = input.nextLine();
+                        Pelanggan customer = new Pelanggan(nama);
+                        tambahPelanggan(nomorMeja, customer);
                     // tampilkan pesan untuk input nomor meja dan nama pelanggan untuk digunakan
                     // pada method
                     // jangan lupa instansiasi Pelanggan dengan nama pelanggan sesuai input
